@@ -1,2 +1,2 @@
-# Lab
-Assignments for Java
+#Assignments for Java
+
