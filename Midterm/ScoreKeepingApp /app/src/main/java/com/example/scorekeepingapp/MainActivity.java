@@ -19,9 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button number2;
     private Button number3;
     private Button buttonReset;
+    private Button buttonBegin;
     private int numberA = 0;
     private int numberB = 0;
-    private int numberBt;
+    private int numberBt = 0;
     private int isFlag = -1;
 
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonMinusB = findViewById(R.id.button_minusB);
         buttonPlusB = findViewById(R.id.button_plusB);
         buttonReset = findViewById(R.id.button_reset);
+        buttonBegin = findViewById(R.id.button_begin);
         number1 = findViewById(R.id.button_1);
         number2 = findViewById(R.id.button_2);
         number3 = findViewById(R.id.button_3);
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonMinusB.setOnClickListener(this);
         buttonPlusB.setOnClickListener(this);
         buttonReset.setOnClickListener(this);
+        buttonBegin.setOnClickListener(this);
         number1.setOnClickListener(this);
         number2.setOnClickListener(this);
         number3.setOnClickListener(this);
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(v.getId()){
 
+            case R.id.button_begin:
+                break;
             case R.id.button_minusA:
                 isFlag = 0;
                 scoreMinus();
@@ -82,9 +87,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.button_1:
-            case R.id.button_2:
-            case R.id.button_3:
+                number1.setActivated(true);
+                number2.setActivated(false);
+                number3.setActivated(false);
+                numberBt = Integer.parseInt(((Button)v).getText().toString());
+                break;
 
+            case R.id.button_2:
+                number2.setActivated(true);
+                number1.setActivated(false);
+                number3.setActivated(false);
+                numberBt = Integer.parseInt(((Button)v).getText().toString());
+                break;
+
+            case R.id.button_3:
+                number3.setActivated(true);
+                number1.setActivated(false);
+                number2.setActivated(false);
                 numberBt = Integer.parseInt(((Button)v).getText().toString());
                 break;
 
@@ -122,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void reset(){
         textView_scoreA.setText("0");
         textView_scoreB.setText("0");
+        number1.setActivated(false);
+        number2.setActivated(false);
+        number3.setActivated(false);
         numberA = 0;
         numberB = 0;
         isFlag = -1;
