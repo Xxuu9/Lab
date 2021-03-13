@@ -130,14 +130,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //use if statement to see where should the dot be
             case R.id.dot:
-                if (str1 != "" && option == "") {
-                    str1 += ((Button) v).getText().toString();
-                    theFirstView.setText(str1);
-                }
-                if (option != "" && str2 != "") {
-                    str2 += ((Button) v).getText().toString();
-                    theSecondView.setText(str2);
-                } else {// execute nothing
+                    if (str1 != "" && option == ""&& !str1.contains(".")) {
+                        str1 += ((Button) v).getText().toString();
+                        theFirstView.setText(str1);
+                    }
+                    else if (option != "" && str2 != ""&& !str2.contains(".")) {
+                        str2 += ((Button) v).getText().toString();
+                        theSecondView.setText(str2);
+                    }
+                 else {// execute nothing
                 }
                 break;
             // no operate here, actual operator is in case R.id.equals
@@ -175,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void operatorMethod() {
         theEqualView.setText("=");
+        if(theFirstView.getText() == "" || theSecondView.getText() == "" ) return;
         isFlag = 1;
         number1 = Double.parseDouble(theFirstView.getText().toString());
         number2 = Double.parseDouble(theSecondView.getText().toString());
@@ -199,20 +201,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //use if statement to decide which number or character should be deleted
     public void deleteElement() {
-        if (theAnswerView.getText().toString() == "" && theSecondView.getText().toString() != "") {
+        if(theEqualView.getText().toString() != ""){
+            theEqualView.setText("");
+        }
+        else if (theAnswerView.getText().toString() == "" && theSecondView.getText().toString() != "") {
             if (str2.length() == 1) {
                 theSecondView.setText("");
+                str2 = "";
             } else {
                 str2 = str2.substring(0, theSecondView.length() - 1);
                 theSecondView.setText(str2);
             }
         }
-        if (theSecondView.getText().toString() == "" && theOptionView.getText().toString() != "") {
+        else if (theSecondView.getText().toString() == "" && theOptionView.getText().toString() != "") {
             theOptionView.setText("");
+            option = "";
         }
-        if (theOptionView.getText().toString() == "" && theFirstView.getText().toString() != "") {
-            if (str2.length() == 1) {
+        else if (theOptionView.getText().toString() == "" && theFirstView.getText().toString() != "") {
+            if (str1.length() == 1) {
                 theFirstView.setText("");
+                str1 = "";
             } else {
                 str1 = str1.substring(0, str1.length() - 1);
                 theFirstView.setText(str1);
