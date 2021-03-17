@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonBegin;
     private int numberA = 0;
     private int numberB = 0;
-    private int numberBt = 0;
+    private int numberBt = 1;
     private int isFlag = -1;
 
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         numberA = 0;
         numberB = 0;
         isFlag = -1;
-        numberBt = 0;
+        numberBt = 1;
 
     }
 }
