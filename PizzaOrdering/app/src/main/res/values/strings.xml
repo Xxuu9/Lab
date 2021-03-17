@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Pizza Ordering</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Pizza Home</string>
+    <string name="nav_header_subtitle">pizzahome@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Ordering History</string>
+    <string name="menu_slideshow">My Balance</string>
+
+    <string name="button_beginOrder">Begin Ordering</string>
+
+
+</resources>
