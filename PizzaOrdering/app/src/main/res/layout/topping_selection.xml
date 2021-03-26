@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_yellow"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView_greenolives"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/greenolives" />
+        <TextView
+            android:id="@+id/tv_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green Olives" />
+
+        <ImageView
+            android:id="@+id/imageView_greenpepper"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/greenpepper" />
+        <TextView
+            android:id="@+id/tv_gp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green Pepper" />
+
+        <ImageView
+            android:id="@+id/imageView_tomatoes"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/tomatoes" />
+        <TextView
+            android:id="@+id/tv_tm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tomato" />
+
+        <ImageView
+            android:id="@+id/imageView_pineapple"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/pineapple" />
+        <TextView
+            android:id="@+id/tv_pa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pineapple" />
+
+        <ImageView
+            android:id="@+id/imageView_mushroom"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/mushroom" />
+        <TextView
+            android:id="@+id/tv_mr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mushroom" />
+
+        <ImageView
+            android:id="@+id/imageView_onion"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/onion" />
+        <TextView
+            android:id="@+id/tv_onion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Onion" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_greenolives_de"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="70dp"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/bt_greenpepper_de"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="-" />
+        <Button
+            android:id="@+id/bt_tomatoes_de"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="-" />
+        <Button
+            android:id="@+id/bt_pineapple_de"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="-" />
+        <Button
+            android:id="@+id/bt_mushroom_de"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="-" />
+        <Button
+            android:id="@+id/bt_onion_de"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="-" />
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_back" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/editText_go_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="80dp"
+            android:text="@string/go_price"/>
+        <TextView
+            android:id="@+id/editText_gp_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="70dp"
+            android:gravity="center_vertical"
+            android:text="@string/gp_price"/>
+        <TextView
+            android:id="@+id/editText_tomato_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="80dp"
+            android:gravity="center_vertical"
+            android:text="@string/tomato_price"/>
+        <TextView
+            android:id="@+id/editText_pa_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="80dp"
+            android:gravity="center_vertical"
+            android:text="@string/pineapple_price"/>
+        <TextView
+            android:id="@+id/editText_mr_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="70dp"
+            android:gravity="center_vertical"
+            android:text="@string/mushroom_price"/>
+        <TextView
+            android:id="@+id/editText_onion_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="70dp"
+            android:gravity="center_vertical"
+            android:text="@string/onion_price"/>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/bt_greenolives_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="70dp"
+            android:text="+" />
+        <Button
+            android:id="@+id/bt_greenpepper_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="+" />
+        <Button
+            android:id="@+id/bt_tomatoes_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="+" />
+        <Button
+            android:id="@+id/bt_pineapple_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="+" />
+        <Button
+            android:id="@+id/bt_mushroom_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="70dp"
+            android:text="+" />
+        <Button
+            android:id="@+id/bt_onion_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="+" />
+        <Button
+            android:id="@+id/button"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_confirm" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

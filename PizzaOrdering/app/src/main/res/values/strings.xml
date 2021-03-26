@@ -11,7 +11,15 @@
     <string name="menu_gallery">Ordering History</string>
     <string name="menu_slideshow">My Balance</string>
 
-    <string name="button_beginOrder">Begin Ordering</string>
+    <string name="button_beginOrder">Order Here</string>
+    <string name="button_confirm">Confirm</string>
+    <string name="button_back">Back</string>
 
+    <string name="go_price">3.99</string>
+    <string name="gp_price">2.99</string>
+    <string name="mushroom_price">4.99</string>
+    <string name="tomato_price">1.99</string>
+    <string name="onion_price">0.99</string>
+    <string name="pineapple_price">2.99</string>
 
 </resources>
