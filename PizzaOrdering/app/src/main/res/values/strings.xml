@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Ordering History</string>
     <string name="menu_slideshow">My Balance</string>
+    <string name="menu_menu">Menu</string>
 
     <string name="button_beginOrder">Order Here</string>
     <string name="button_confirm">Confirm</string>

@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".size_selection" >
+            android:name=".MenuActivity" >
         </activity>
     </application>
 
