@@ -52,13 +52,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button button_orderHere = (Button) findViewById(R.id.bt_beginOrder);
-        button_orderHere.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(intent);
-            }
-        });
+
+      //  button_orderHere.setOnClickListener(new View.OnClickListener(){
+//            public void beginOrder(View view){
+//                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+//                startActivity(intent);
+//            };
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+//                startActivity(intent);
+//            }
+     //  });
     }
 
     @Override
@@ -77,5 +82,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    public void beginOrder(View view) {
+        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
 }
