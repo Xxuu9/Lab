@@ -1,16 +1,16 @@
-package com.example.pizzaordering.ui.slideshow;
+package com.example.pizzaordering.ui.orderinghistory;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class OrderingHistoryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public OrderingHistoryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+//        mText.setValue("This is orderinghistory fragment");
     }
 
     public LiveData<String> getText() {

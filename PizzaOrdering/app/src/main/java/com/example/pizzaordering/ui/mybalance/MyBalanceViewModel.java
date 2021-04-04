@@ -1,16 +1,16 @@
-package com.example.pizzaordering.ui.gallery;
+package com.example.pizzaordering.ui.mybalance;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class MyBalanceViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public MyBalanceViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+//        mText.setValue("This is mybalance fragment");
     }
 
     public LiveData<String> getText() {
