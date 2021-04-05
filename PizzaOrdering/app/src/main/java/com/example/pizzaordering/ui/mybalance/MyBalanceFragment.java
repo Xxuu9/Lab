@@ -20,13 +20,6 @@ public class MyBalanceFragment extends Fragment {
         myBalanceViewModel =
                 new ViewModelProvider(this).get(MyBalanceViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mybalance, container, false);
-//        final TextView textView = root.findViewById(R.id.text_slideshow);
-//        myBalanceViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         return root;
     }
 }

@@ -21,13 +21,6 @@ public class OrderingHistoryFragment extends Fragment {
                 new ViewModelProvider(this).get(OrderingHistoryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_orderinghistory, container, false);
 
-//        final TextView textView = root.findViewById(R.id.text_gallery);
-//        orderingHistoryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         return root;
     }
 }
