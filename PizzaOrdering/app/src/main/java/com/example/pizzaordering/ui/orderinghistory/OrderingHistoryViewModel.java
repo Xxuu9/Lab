@@ -10,7 +10,6 @@ public class OrderingHistoryViewModel extends ViewModel {
 
     public OrderingHistoryViewModel() {
         mText = new MutableLiveData<>();
-//        mText.setValue("This is orderinghistory fragment");
     }
 
     public LiveData<String> getText() {

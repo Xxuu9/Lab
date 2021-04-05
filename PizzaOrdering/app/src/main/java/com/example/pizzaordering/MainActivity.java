@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
-        Button button_orderHere = (Button) findViewById(R.id.bt_beginOrder);
+     //   Button button_orderHere = (Button) findViewById(R.id.bt_beginOrder);
 
       //  button_orderHere.setOnClickListener(new View.OnClickListener(){
 //            public void beginOrder(View view){
@@ -86,6 +86,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(intent);
     }
-
 
 }
