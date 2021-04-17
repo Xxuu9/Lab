@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/Theme.PizzaOrdering.NoActionBar"
             android:name=".MenuActivity" >
         </activity>
         <activity

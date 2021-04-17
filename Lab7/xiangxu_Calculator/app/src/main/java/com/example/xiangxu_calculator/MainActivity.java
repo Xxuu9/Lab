@@ -1,9 +1,14 @@
 package com.example.xiangxu_calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
     // set up member variables that will be used in following methods.
     private Button zero, one, two, three, four, five, six, seven, eight, nine;
     private Button dot;
@@ -33,16 +40,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String str1 = "";
     private String str2 = "";
     private String option = "";
-    private double number1, number2;
-    private double numResult;
+    private float number1, number2;
+    private float numResult;
+    private SharedPreferences savedValues;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        savedValues = PreferenceManager.getDefaultSharedPreferences(this);
+        
         initButton();
+    }
 
+
+
+    public void onPause() {
+        savedValues();
+        super.onPause();
+    }
+
+    public void onStop(){
+        savedValues();
+        super.onStop();
+    }
+
+    public void onDestroy(){
+        savedValues();
+        super.onDestroy();
+    }
+
+    public void onResume() {
+        super.onResume();
+        numResult = savedValues.getFloat("numResult", numResult);
+        typeCast();
+    }
+
+    private void savedValues(){
+        SharedPreferences.Editor editor = savedValues.edit();
+        if (savedValues.getBoolean("prefer_remember", false)){
+            editor.putFloat("numResult", numResult);
+        }
+        else{
+            editor.clear();
+            editor.putBoolean("prefer_remember", false);
+        }
+
+       //editor.commit();
+        editor.apply();
     }
 
 
@@ -118,12 +166,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         theEqualView.setOnClickListener(this);
         theSecondView.setOnClickListener(this);
         theAnswerView.setOnClickListener(this);
+
     }
-
-
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.zero:
             case R.id.one:
@@ -155,15 +203,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //use if statement to see where should the dot be
             case R.id.dot:
-                    if (str1 != "" && option == ""&& !str1.contains(".")) {
-                        str1 += ((Button) v).getText().toString();
-                        theFirstView.setText(str1);
-                    }
-                    else if (option != "" && str2 != ""&& !str2.contains(".")) {
-                        str2 += ((Button) v).getText().toString();
-                        theSecondView.setText(str2);
-                    }
-                 else {// execute nothing
+                if (str1 != "" && option == "" && !str1.contains(".")) {
+                    str1 += ((Button) v).getText().toString();
+                    theFirstView.setText(str1);
+                } else if (option != "" && str2 != "" && !str2.contains(".")) {
+                    str2 += ((Button) v).getText().toString();
+                    theSecondView.setText(str2);
+                } else {// execute nothing
                 }
                 break;
             // no operate here, actual operator is in case R.id.equals
@@ -197,14 +243,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 operatorMethod();
                 break;
         }
+
     }
 
     public void operatorMethod() {
         theEqualView.setText("=");
         if(theFirstView.getText() == "" || theSecondView.getText() == "" ) return;
         isFlag = 1;
-        number1 = Double.parseDouble(theFirstView.getText().toString());
-        number2 = Double.parseDouble(theSecondView.getText().toString());
+        number1 = Float.parseFloat(theFirstView.getText().toString());
+        number2 = Float.parseFloat(theSecondView.getText().toString());
 
         if (option == "+") {
             numResult = number1 + number2;
@@ -222,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             numResult = number1 % number2;
         }
         typeCast();
+
     }
 
     //use if statement to decide which number or character should be deleted
@@ -273,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             theAnswerView.setText(intResult + "");
         }
         if (intResult != numResult){
-            numResult = Double.parseDouble(String.format("%.6f", numResult));
+            numResult = Float.parseFloat(String.format("%.6f", numResult));
             theAnswerView.setText(numResult + "");
         }
     }

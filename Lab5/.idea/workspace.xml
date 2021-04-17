@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4d0c7f4-7d58-4fd5-abcc-c480b796f627" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/xiangxu_Calculator/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xiangxu_Calculator/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xiangxu_Calculator/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xiangxu_Calculator/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab4/.idea/Lab4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lab6/.idea/Lab6.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab6/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PizzaOrdering/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PizzaOrdering/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PizzaOrdering/app/src/main/java/com/example/pizzaordering/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PizzaOrdering/app/src/main/java/com/example/pizzaordering/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PizzaOrdering/app/src/main/java/com/example/pizzaordering/MenuActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PizzaOrdering/app/src/main/java/com/example/pizzaordering/MenuActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,5 +43,16 @@
       <updated>1614804990510</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="152" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617760790286">
+      <screen x="0" y="25" width="1440" height="794" />
+    </state>
+    <state x="-89" y="-1001" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.794/-291.-1055.1920.1055@-291.-1055.1920.1055" timestamp="1617668691270" />
+    <state x="152" y="66" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.794@0.25.1440.794" timestamp="1617760790286" />
+    <state x="35" y="-913" key="IDE.errors.dialog" timestamp="1617668686037">
+      <screen x="-291" y="-1055" width="1920" height="1055" />
+    </state>
+    <state x="35" y="-913" key="IDE.errors.dialog/0.25.1440.794/-291.-1055.1920.1055@-291.-1055.1920.1055" timestamp="1617668686037" />
   </component>
 </project>
