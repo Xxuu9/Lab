@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/specificDiceSides"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="number"
+            android:text="4" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="Result:"
+            app:layout_constraintBottom_toTopOf="@+id/rt_d4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/diceType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbd4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d4" />
+
+            <RadioButton
+                android:id="@+id/rbd6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d6" />
+
+            <RadioButton
+                android:id="@+id/rbd8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d8" />
+
+            <RadioButton
+                android:id="@+id/rbd10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d10" />
+
+            <RadioButton
+                android:id="@+id/rbd12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d12" />
+
+            <RadioButton
+                android:id="@+id/rbd20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="d20" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/rollTwice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roll Twice?" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        <CheckBox
+            android:id="@+id/containZero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contain 0" />
+        <CheckBox
+            android:id="@+id/timesTen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="roll in 10s" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/roll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ROLL" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Type the slides of you own Dice:"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
