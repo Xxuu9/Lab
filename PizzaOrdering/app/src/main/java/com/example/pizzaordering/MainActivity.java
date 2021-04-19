@@ -7,10 +7,12 @@ import android.view.Menu;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.example.pizzaordering.ui.orderinghistory.OrderingHistoryViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,6 +24,9 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    private OrderingHistoryViewModel mOrderingHistoryViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +48,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+//        mOrderingHistoryViewModel = ViewModelProviders.of(this).get(OrderingHistoryViewModel.class);
 
-     //   Button button_orderHere = (Button) findViewById(R.id.bt_beginOrder);
+
+
+        //   Button button_orderHere = (Button) findViewById(R.id.bt_beginOrder);
 
       //  button_orderHere.setOnClickListener(new View.OnClickListener(){
 //            public void beginOrder(View view){

@@ -1,8 +1,11 @@
 package com.example.pizzaordering;
 
+import com.example.pizzaordering.ui.orderinghistory.OrderingHistoryViewModel;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +17,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
-public class MenuActivity extends Activity implements TextView.OnEditorActionListener,
+
+
+import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelStore;
+import androidx.lifecycle.ViewModelStoreOwner;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+
+public class MenuActivity extends AppCompatActivity implements TextView.OnEditorActionListener,
         View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private RadioGroup rgPizzaSize;
@@ -28,12 +48,18 @@ public class MenuActivity extends Activity implements TextView.OnEditorActionLis
     private float totalPrice, pizzaPrice;
     private int goPriceNum, paPriceNum, gpPriceNum, mrPriceNum, tmPriceNum, onPriceNum;
 
+    private OrderingHistoryViewModel mOrderingHistoryViewModel;
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_menu);
 
+        mOrderingHistoryViewModel = ViewModelProviders.of(this).get(OrderingHistoryViewModel.class);
+
         update();
         init();
+
 
 //        Button bt_confirm = (Button) findViewById(R.id.bt_confirm);
     }
@@ -127,14 +153,35 @@ public class MenuActivity extends Activity implements TextView.OnEditorActionLis
 
     public void Confirm(View view) {
         if (pizzaPrice !=0) {
+            Order currentOrder = new Order();
+            currentOrder.setMOrderId(1);
+            currentOrder.setMOrderTime(this.getCurrentDateTime());
+            currentOrder.setMPizzaSize(pizzaSize);
+            currentOrder.setMToppings("test123");
+            currentOrder.setMOrderPrice(String.valueOf(totalPrice));
+//            SystemClock.sleep(2000);
+            System.out.println(">>>"+currentOrder.getMOrderPrice());
+
+            mOrderingHistoryViewModel.insert(currentOrder);
+
+
             Intent intent = new Intent(MenuActivity.this, OrderingHistoryActivity.class);
             startActivity(intent);
+
+
         }
         else {
             Toast.makeText(this,
                     "Please choose the size of the pizza!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private String getCurrentDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 
@@ -177,6 +224,8 @@ public class MenuActivity extends Activity implements TextView.OnEditorActionLis
         System.out.println(">>>" + onPriceNum);
         System.out.println(">>>" + pizzaPrice);
         System.out.println(">>>" + totalPrice);
+
+
     }
 
     @Override
@@ -293,4 +342,6 @@ public class MenuActivity extends Activity implements TextView.OnEditorActionLis
         }
         calculatePrice();
     }
+
+
 }

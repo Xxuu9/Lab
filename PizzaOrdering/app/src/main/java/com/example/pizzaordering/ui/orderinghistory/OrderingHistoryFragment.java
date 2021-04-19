@@ -10,22 +10,27 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizzaordering.Order;
 import com.example.pizzaordering.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderingHistoryFragment extends Fragment implements OrderAdapter.ItemClickListener {
 
-    private OrderingHistoryViewModel orderingHistoryViewModel;
+    private OrderingHistoryViewModel mOrderingHistoryViewModel;
 
     protected RecyclerView mRecyclerView;
-    protected String[] mDataset;
     protected OrderAdapter mAdapter;
+
+    private List<Order> mOrder;
 
     public void onCreate(Bundle savedInstanceState){
 
@@ -35,14 +40,28 @@ public class OrderingHistoryFragment extends Fragment implements OrderAdapter.It
 //        savedValues = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         setHasOptionsMenu(true);
+
+        mOrderingHistoryViewModel = ViewModelProviders.of(this).get(OrderingHistoryViewModel.class);
+//        System.out.println(">>>---++"+mOrderingHistoryViewModel.getAllResults());
+
+        mOrderingHistoryViewModel.getAllResults().observe(this, new Observer<List<Order>>() {
+            @Override
+            public void onChanged(List<Order> orders) {
+                System.out.println(">>><<<"+orders);
+                mOrder = orders;
+            }
+
+        });
+
+
     }
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        orderingHistoryViewModel =
-                new ViewModelProvider(this).get(OrderingHistoryViewModel.class);
+//        mOrderingHistoryViewModel =
+//                new ViewModelProvider(this).get(OrderingHistoryViewModel.class);
 
 
 
@@ -51,18 +70,32 @@ public class OrderingHistoryFragment extends Fragment implements OrderAdapter.It
         RecyclerView recyclerView = root.findViewById(R.id.list_of_orders);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Horse");
-        animalNames.add("Cow");
-        animalNames.add("Camel");
-        animalNames.add("Sheep");
-        animalNames.add("Goat");
-        System.out.println(">>>" + animalNames);
+//        ArrayList<String> animalNames = new ArrayList<>();
+//        animalNames.add("Horse");
+//        animalNames.add("Cow");
+//        animalNames.add("Camel");
+//        animalNames.add("Sheep");
+//        animalNames.add("Goat");
+//
+//        ArrayList<ArrayList<String>> animalNamesList= new ArrayList<>();
+//        animalNamesList.add(animalNames);
+//        animalNamesList.add(animalNames);
+//        animalNamesList.add(animalNames);
 
-        mAdapter = new OrderAdapter(getActivity(), animalNames);
+//        mOrderingHistoryViewModel.getAllResults().observe(this, new Observer<List<Order>>() {
+//            @Override
+//            public void onChanged(List<Order> results) {
+//                System.out.println(">>>>>>>" + results.get(results.size()-1).getMOrderTime());
+//
+//
+//            }
+
+
+
+
+        mAdapter = new OrderAdapter(getActivity(), mOrder);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
-
 
 
         return root;
@@ -71,14 +104,7 @@ public class OrderingHistoryFragment extends Fragment implements OrderAdapter.It
     @Override
     public void onItemClick(View view, int position) {
         // https://stackoverflow.com/questions/62490730/cannot-resolve-method-maketextcontext-java-lang-string-int
-        Toast.makeText(getActivity(), "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "You clicked " + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
-
-    private void initDataset() {
-        mDataset = new String[10];
-        for (int i = 0; i < 10; i++) {
-            mDataset[i] = "This is element #" + i;
-        }
-    }
 }
