@@ -16,14 +16,14 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintBottom_toTopOf="@+id/rg_pizzaSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 <!--    size selection-->
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/rg_pizzaSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -34,41 +34,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/rb_smallSize"
+            android:id="@+id/rg_smallSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Small" />
 
         <RadioButton
-            android:id="@+id/rb_mediumSize"
+            android:id="@+id/rg_mediumSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medium" />
 
         <RadioButton
-            android:id="@+id/rb_largeSize"
+            android:id="@+id/rg_largeSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Large" />
 
         <RadioButton
-            android:id="@+id/rb_extraLargeSize"
+            android:id="@+id/rg_extraLargeSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Extra Large" />
 
     </RadioGroup>
-
-    <Switch
-        android:id="@+id/rb_cheeseOrNot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Cheese"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
 <!--topping selection-->
     <LinearLayout
@@ -80,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintVertical_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_cheeseOrNot"
+        app:layout_constraintTop_toBottomOf="@+id/rg_pizzaSize"
         android:orientation="vertical">
 
     <ImageView
@@ -95,27 +84,31 @@
         android:layout_height="wrap_content"
         android:text="Green Olives" />
 
-    <TextView
-        android:id="@+id/tv_go_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$3.99" />
+        <TextView
+            android:id="@+id/tv_go_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.99" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/bt_greenolives_de"
+            android:id="@+id/bt_go_de"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-" />
+
         <TextView
-            android:id="@+id/editText_go_amount"
+            android:id="@+id/tv_go_amount"
+            android:text="0"
+            android:gravity="center"
             android:layout_width="40dp"
             android:layout_height="40dp" />
+
         <Button
-            android:id="@+id/bt_greenolives_in"
+            android:id="@+id/bt_go_in"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+" />
@@ -135,23 +128,25 @@
         android:id="@+id/tv_gp_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$2.99" />
+        android:text="2.99" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/bt_greenpepper_de"
+            android:id="@+id/bt_gp_de"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-" />
         <TextView
-            android:id="@+id/editText_gp_amount"
+            android:id="@+id/tv_gp_amount"
+            android:text="0"
+            android:gravity="center"
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <Button
-            android:id="@+id/bt_greenpepper_in"
+            android:id="@+id/bt_gp_in"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+" />
@@ -175,7 +170,7 @@
             android:id="@+id/tv_tm_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$0.99" />
+            android:text="0.99" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -187,9 +182,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:text="-" />
+
             <TextView
+                android:id="@+id/tv_tm_amount"
+                android:text="0"
+                android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
+
             <Button
                 android:id="@+id/bt_tm_in"
                 android:layout_width="40dp"
@@ -210,7 +210,7 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintVertical_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rb_cheeseOrNot"
+        app:layout_constraintTop_toBottomOf="@+id/rg_pizzaSize"
         android:orientation="vertical">
 
         <ImageView
@@ -228,7 +228,7 @@
             android:id="@+id/tv_pa_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$2.99" />
+            android:text="2.99" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -240,7 +240,9 @@
                 android:layout_height="40dp"
                 android:text="-" />
             <TextView
-                android:id="@+id/editText_pa_amount"
+                android:id="@+id/tv_pa_amount"
+                android:text="0"
+                android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
             <Button
@@ -265,7 +267,7 @@
             android:id="@+id/tv_mr_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$2.99" />
+            android:text="2.99" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -277,7 +279,9 @@
                 android:layout_height="40dp"
                 android:text="-" />
             <TextView
-                android:id="@+id/editText_mr_amount"
+                android:id="@+id/tv_mr_amount"
+                android:text="0"
+                android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
             <Button
@@ -299,32 +303,61 @@
             android:layout_height="wrap_content"
             android:text="Onion" />
         <TextView
-            android:id="@+id/tv_onion_price"
+            android:id="@+id/tv_on_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$2.99" />
+            android:text="2.99" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/bt_onion_de"
+                android:id="@+id/bt_on_de"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:text="-" />
+
             <TextView
-                android:id="@+id/editText_onion_amount"
+                android:id="@+id/tv_on_amount"
+                android:text="0"
+                android:gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
+
             <Button
-                android:id="@+id/bt_onion_in"
+                android:id="@+id/bt_on_in"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:text="+" />
 
         </LinearLayout>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/price_display"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Total Price: $"
+        android:gravity="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
+
+    <TextView
+        android:id="@+id/tv_total_price"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
 
     <Button
         android:id="@+id/bt_confirm"
