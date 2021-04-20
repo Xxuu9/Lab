@@ -60,8 +60,10 @@ public class OrderingHistoryFragment extends Fragment implements OrderAdapter.It
 
     @Override
     public void onItemLongClick(View view, int position) {
-//        Toast.makeText(getActivity(), "You long clicked " + " on row number " + position, Toast.LENGTH_SHORT).show();
-        mAdapter.removeItem(position);
+        // remove the order from the recyclerview
+        Order order = mAdapter.removeItem(position);
+        // delete the order from the database
+        mOrderingHistoryViewModel.deleteOne(order);
     }
 
     /*

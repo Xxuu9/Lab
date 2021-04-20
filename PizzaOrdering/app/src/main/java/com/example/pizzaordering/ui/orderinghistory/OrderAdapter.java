@@ -42,14 +42,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String positionData0 = mData.get(position).getMOrderTime();
-        String positionData1 = mData.get(position).getMPizzaSize();
-        String positionData2 = mData.get(position).getMToppings();
-        String positionData3 = mData.get(position).getMOrderPrice();
-        holder.tvOrderTime.setText(positionData0);
-        holder.tvPizzaSize.setText(positionData1);
-        holder.tvToppings.setText(positionData2);
-        holder.tvOrderPrice.setText(positionData3);
+        Integer positionDataId = mData.get(position).getMOrderId();
+        String positionDataTime = mData.get(position).getMOrderTime();
+        String positionDataSize = mData.get(position).getMPizzaSize();
+        String positionDataToppings = mData.get(position).getMToppings();
+        String positionDataPrice = mData.get(position).getMOrderPrice();
+        holder.tvOrderId.setText("Order id:" + String.valueOf(positionDataId));
+        holder.tvOrderTime.setText(positionDataTime);
+        holder.tvPizzaSize.setText(positionDataSize);
+        holder.tvToppings.setText(positionDataToppings);
+        holder.tvOrderPrice.setText(positionDataPrice);
     }
 
     // total number of rows
@@ -63,6 +65,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnLongClickListener {
+        TextView tvOrderId;
         TextView tvOrderTime;
         TextView tvPizzaSize;
         TextView tvToppings;
@@ -70,6 +73,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
         ViewHolder(View itemView) {
             super(itemView);
+            tvOrderId = itemView.findViewById(R.id.tv_order_id);
             tvOrderTime = itemView.findViewById(R.id.tv_order_time);
             tvPizzaSize = itemView.findViewById(R.id.tv_pizza_size);
             tvToppings = itemView.findViewById(R.id.tv_toppings);
@@ -95,10 +99,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     }
 
-//    // convenience method for getting data at click position
-//    String getItem(int id) {
-//        return mData.get(id);
-//    }
+
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
@@ -112,11 +113,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         void onItemLongClick(View view, int position);
     }
 
-    public void removeItem(int position)
+    public Order removeItem(int position)
     {
+        Order order = mData.get(position);
         mData.remove(position);
         //Refresh
         notifyDataSetChanged();
+        return order;
     }
 
     public void setOrders(List<Order> orders){

@@ -17,7 +17,10 @@ public interface OrderDao {
     @Query("DELETE FROM order_table")
     void deleteAll();
 
-    @Query("SELECT * from order_table ORDER BY order_id ASC")
+    @Query("DELETE FROM order_table WHERE order_id = :id")
+    void deleteOne(Integer id);
+
+    @Query("SELECT * from order_table ORDER BY order_id DESC")
     LiveData<List<Order>> getAllOrders();
 
     @Query("SELECT * from order_table WHERE order_id = :id")
