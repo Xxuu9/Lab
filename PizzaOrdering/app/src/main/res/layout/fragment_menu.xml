@@ -7,19 +7,19 @@
     android:background="@color/light_yellow"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:text="@string/menu_menu"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/rg_pizzaSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_menu"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="monospace"-->
+<!--        android:text="@string/menu_menu"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold|italic"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/rg_pizzaSize"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 <!--    size selection-->
     <RadioGroup
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0.005"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,28 +61,29 @@
 
 <!--topping selection-->
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintVertical_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rg_pizzaSize"
-        android:orientation="vertical">
+        app:layout_constraintVertical_bias="0.005">
 
-    <ImageView
-        android:id="@+id/imageView_greenolives"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/greenolives" />
+        <ImageView
+            android:id="@+id/imageView_greenolives"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/greenolives" />
 
-    <TextView
-        android:id="@+id/tv_go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Green Olives" />
+        <TextView
+            android:id="@+id/tv_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green Olives" />
 
         <TextView
             android:id="@+id/tv_go_price"
@@ -90,81 +91,87 @@
             android:layout_height="wrap_content"
             android:text="3.99" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/bt_go_de"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="-" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_go_de"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/tv_go_amount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/bt_go_in"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView_greenpepper"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/greenpepper" />
 
         <TextView
-            android:id="@+id/tv_go_amount"
-            android:text="0"
-            android:gravity="center"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:id="@+id/tv_gp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Green Pepper" />
 
-        <Button
-            android:id="@+id/bt_go_in"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="+" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView_greenpepper"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/greenpepper" />
-    <TextView
-        android:id="@+id/tv_gp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Green Pepper"/>
-    <TextView
-        android:id="@+id/tv_gp_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2.99" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/bt_gp_de"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="-" />
         <TextView
-            android:id="@+id/tv_gp_amount"
-            android:text="0"
-            android:gravity="center"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <Button
-            android:id="@+id/bt_gp_in"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="+" />
+            android:id="@+id/tv_gp_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2.99" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_gp_de"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/tv_gp_amount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/bt_gp_in"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+" />
+
+        </LinearLayout>
 
 
-    <ImageView
-        android:id="@+id/imageView_tomatoes"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/tomatoes" />
+        <ImageView
+            android:id="@+id/imageView_tomatoes"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/tomatoes" />
 
-    <TextView
-        android:id="@+id/tv_tm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tomato"/>
+        <TextView
+            android:id="@+id/tv_tm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tomato" />
 
         <TextView
             android:id="@+id/tv_tm_price"
@@ -185,10 +192,10 @@
 
             <TextView
                 android:id="@+id/tv_tm_amount"
-                android:text="0"
-                android:gravity="center"
                 android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="0" />
 
             <Button
                 android:id="@+id/bt_tm_in"
@@ -208,7 +215,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0.005"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rg_pizzaSize"
         android:orientation="vertical">
@@ -334,43 +341,44 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/price_display"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="Total Price: $"
-        android:gravity="right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92" />
 
-    <TextView
-        android:id="@+id/tv_total_price"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
-
-    <Button
-        android:id="@+id/bt_confirm"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="Confirm"
-        android:text="@string/button_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_menu"
-        app:layout_constraintVertical_bias="0.978" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.999">
+
+        <Button
+            android:id="@+id/bt_clearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Clear" />
+
+        <TextView
+            android:id="@+id/price_display"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="right"
+            android:text="Total Price: $" />
+
+        <TextView
+            android:id="@+id/tv_total_price"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:text="0" />
+
+
+        <Button
+            android:id="@+id/bt_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:onClick="Confirm"
+            android:text="@string/button_confirm" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

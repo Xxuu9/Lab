@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -75,6 +76,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             tvOrderPrice = itemView.findViewById(R.id.tv_order_price);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
@@ -82,12 +84,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
 
-        @Override
-        public boolean onLongClick(View v) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
 
-            return false;
+        @Override
+        public boolean onLongClick(View view) {
+            if (mClickListener != null) mClickListener.onItemLongClick(view, getAdapterPosition());
+
+
+            return true;
         }
+
     }
 
 //    // convenience method for getting data at click position
@@ -103,6 +108,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
+    }
+
+    public void removeItem(int position)
+    {
+        mData.remove(position);
+        //Refresh
+        notifyDataSetChanged();
     }
 
     public void setOrders(List<Order> orders){

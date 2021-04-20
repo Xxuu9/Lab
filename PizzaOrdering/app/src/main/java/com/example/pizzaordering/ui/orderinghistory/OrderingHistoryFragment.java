@@ -55,12 +55,13 @@ public class OrderingHistoryFragment extends Fragment implements OrderAdapter.It
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(), "You clicked " + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Long click to delete the order", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onLongClick(View view, int position) {
-        Toast.makeText(getActivity(), "You clicked " + " on row number " + position, Toast.LENGTH_SHORT).show();
+    public void onItemLongClick(View view, int position) {
+//        Toast.makeText(getActivity(), "You long clicked " + " on row number " + position, Toast.LENGTH_SHORT).show();
+        mAdapter.removeItem(position);
     }
 
     /*
