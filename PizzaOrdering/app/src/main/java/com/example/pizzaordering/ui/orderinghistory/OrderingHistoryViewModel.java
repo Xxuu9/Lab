@@ -26,7 +26,10 @@ public class OrderingHistoryViewModel extends AndroidViewModel {
     LiveData<List<Order>> getAllResults() { return totalHistoryOrders; }
 
     public void insert(Order orderDetail) {
-        System.out.println(">>>----"+orderDetail.getMOrderPrice());
-        mRepository.insert(orderDetail); }
+        mRepository.insert(orderDetail);
+    }
 
+//    public void deleteAll() {
+//        mRepository.deleteAll();
+//    }
 }

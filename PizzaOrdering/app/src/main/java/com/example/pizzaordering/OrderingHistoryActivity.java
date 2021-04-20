@@ -18,6 +18,22 @@ public class OrderingHistoryActivity extends AppCompatActivity {
 
     }
 
+    /*
+        SharedPreference keys:
+            String: size
+            int: olives
+            int: pineapple
+            int: green pepper
+            int: mushrooms
+            int: tomato
+            int: onion
+
+          placeOrder.onClick()
+            delete everything in shared preferences
+            editor.clear();
+            editor.commit();
+     */
+
 
 
 

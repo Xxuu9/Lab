@@ -1,38 +1,19 @@
 package com.example.pizzaordering;
 
 import com.example.pizzaordering.ui.orderinghistory.OrderingHistoryViewModel;
-import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
-
-
-
-import androidx.lifecycle.ViewModelProviders;
-import androidx.lifecycle.ViewModelStore;
-import androidx.lifecycle.ViewModelStoreOwner;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 
 public class MenuActivity extends AppCompatActivity implements TextView.OnEditorActionListener,
@@ -154,27 +135,49 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
     public void Confirm(View view) {
         if (pizzaPrice !=0) {
             Order currentOrder = new Order();
-            currentOrder.setMOrderId(1);
             currentOrder.setMOrderTime(this.getCurrentDateTime());
-            currentOrder.setMPizzaSize(pizzaSize);
-            currentOrder.setMToppings("test123");
-            currentOrder.setMOrderPrice(String.valueOf(totalPrice));
-//            SystemClock.sleep(2000);
-            System.out.println(">>>"+currentOrder.getMOrderPrice());
+            currentOrder.setMPizzaSize("Pizza size: " + pizzaSize);
+            currentOrder.setMToppings(mergeToppings());
+            currentOrder.setMOrderPrice("Total price: " + String.valueOf(totalPrice));
 
             mOrderingHistoryViewModel.insert(currentOrder);
 
-
             Intent intent = new Intent(MenuActivity.this, OrderingHistoryActivity.class);
             startActivity(intent);
-
-
         }
         else {
             Toast.makeText(this,
                     "Please choose the size of the pizza!", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    private String mergeToppings() {
+        String merged = "";
+        if (goPriceNum != 0) {
+            merged += "Green Olives: " + goPriceNum + " ";
+        }
+        if (paPriceNum != 0) {
+            merged += "Pineapple: " + paPriceNum + " ";
+        }
+        if (gpPriceNum != 0) {
+            merged += "Green Pepper: " + gpPriceNum + " ";
+        }
+        if (mrPriceNum != 0) {
+            merged += "Mushroom: " + mrPriceNum + " ";
+        }
+        if (tmPriceNum != 0) {
+            merged += "Tomato: " + tmPriceNum + " ";
+        }
+        if (onPriceNum != 0) {
+            merged += "Onion: " + onPriceNum + " ";
+        }
+        if (merged.isEmpty()) {
+            merged = "Toppings: None";
+        }
+        else{
+            merged = "Toppings: " + merged;
+        }
+        return merged;
     }
 
     private String getCurrentDateTime() {

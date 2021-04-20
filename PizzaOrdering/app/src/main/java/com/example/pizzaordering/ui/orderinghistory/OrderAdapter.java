@@ -54,12 +54,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        if(mData != null)
+            return mData.size();
+        return 0;
     }
 
-
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+            View.OnLongClickListener {
         TextView tvOrderTime;
         TextView tvPizzaSize;
         TextView tvToppings;
@@ -79,6 +81,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+
+            return false;
+        }
     }
 
 //    // convenience method for getting data at click position
@@ -94,5 +103,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+    }
+
+    public void setOrders(List<Order> orders){
+        mData = orders;
+        notifyDataSetChanged();
     }
 }

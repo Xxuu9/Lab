@@ -20,10 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/Theme.PizzaOrdering.NoActionBar"
+            android:theme="@style/Theme.PizzaOrdering"
+            android:parentActivityName=".MainActivity"
             android:name=".MenuActivity" >
         </activity>
         <activity
+            android:theme="@style/Theme.PizzaOrdering"
+            android:parentActivityName=".MainActivity"
             android:name=".OrderingHistoryActivity" >
         </activity>
     </application>
