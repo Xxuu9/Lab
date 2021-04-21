@@ -52,8 +52,8 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
 
 
         update();
-        collectPrices();
-        init();
+        collectPrices();  //collect all prices from TextViews
+        init();  // initialize all variables
     }
 
     public void onPause() {
@@ -382,6 +382,8 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
 
     }
 
+    // set all displayed values in the layout
+    // boolean clear is used to determine if clear all values or not
     public void setAllValues(Boolean clear){
         if (clear){
             rgPizzaSize.clearCheck();
@@ -403,8 +405,8 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
     }
 
     public int changePrices(int num, String operation) {
-        int lowLimit = 0;
-        int highLimit = 5;
+        int lowLimit = 0;   // can not buy less than 0 items
+        int highLimit = 5;  // can not buy more than 5 items for each topping
         int temp = 0;
         if (operation.equals("-")) {
             temp = num - 1;

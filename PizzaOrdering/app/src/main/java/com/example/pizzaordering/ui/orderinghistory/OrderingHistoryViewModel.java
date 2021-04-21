@@ -27,7 +27,5 @@ public class OrderingHistoryViewModel extends AndroidViewModel {
 
     public void insert(Order orderDetail) { mRepository.insert(orderDetail); }
 
-    public void deleteOne(Order orderDetail) {
-        mRepository.deleteOne(orderDetail);
-    }
+    public void deleteOne(Order orderDetail) { mRepository.deleteOne(orderDetail); }
 }

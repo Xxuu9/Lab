@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_menu, R.id.settings)
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_menu)
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_menu)
                 .setDrawerLayout(drawer)
                 .build();
@@ -64,28 +62,27 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
-        System.out.println(">> ITEM " + item.toString());
-        System.out.println(">> ITEM " + item.getItemId());
 
         switch(item.getItemId()){
             case R.id.action_settings:
                 startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                 break;
-            case 16908332:
-                System.out.println(">> Test");
-                onSupportNavigateUp();
-                break;
-//            case R.id.:
+//            case 16908332:
 //                System.out.println(">> Test");
 //                onSupportNavigateUp();
 //                break;
+
+            // Using id: 16908332 can solve the problem perfectly, but I am not sure if this id
+            // works on other's PCs. So I just added a new item to control the jumping
+            // to the navigator.
+            case R.id.action_navigator:
+                onSupportNavigateUp();
+                break;
             default:
-                System.out.println(">> NAV");
                 super.onOptionsItemSelected(item);
         }
         return true;
@@ -96,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        System.out.println(">>>>>>>>>>");
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
@@ -104,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void beginOrder(View view) {
-        System.out.println(">>>>>>>>>>-------------");
-
         Intent intent = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(intent);
     }
