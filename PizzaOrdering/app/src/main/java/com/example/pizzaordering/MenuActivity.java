@@ -2,10 +2,13 @@ package com.example.pizzaordering;
 
 import com.example.pizzaordering.ui.orderinghistory.OrderingHistoryViewModel;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,17 +22,23 @@ import java.util.Locale;
 public class MenuActivity extends AppCompatActivity implements TextView.OnEditorActionListener,
         View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
+    private OrderingHistoryViewModel mOrderingHistoryViewModel;
+    private SharedPreferences savedValues;
     private RadioGroup rgPizzaSize;
     private TextView tvGoPrice, tvPaPrice, tvGpPrice, tvMrPrice, tvTmPrice, tvOnPrice, tvTotalPrice;
     private TextView tvGoAmount, tvPaAmount, tvGpAmount, tvMrAmount, tvTmAmount, tvOnAmount;
     private Button btGoDe, btGoIn, btPaDe, btPaIn, btGpDe, btGpIn, btMrDe, btMrIn, btTmDe, btTmIn,
-            btOnDe, btOnIn;
+            btOnDe, btOnIn, btClear;
     private String pizzaSize;
     private float goPrice, paPrice, gpPrice, mrPrice, tmPrice, onPrice;
     private float totalPrice, pizzaPrice;
     private int goPriceNum, paPriceNum, gpPriceNum, mrPriceNum, tmPriceNum, onPriceNum;
+    private int rgPizzaSizeId;
 
-    private OrderingHistoryViewModel mOrderingHistoryViewModel;
+    // a very important variable to indicate if the radio button is changed by user or not
+    private boolean isChangedByClear = true;
+
+    private SharedPreferences.Editor editor;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +47,68 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
 
         mOrderingHistoryViewModel = ViewModelProviders.of(this).get(OrderingHistoryViewModel.class);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        savedValues = PreferenceManager.getDefaultSharedPreferences(this);
+
+
         update();
+        collectPrices();
         init();
+    }
 
+    public void onPause() {
+        savedValues();
+        super.onPause();
+    }
 
-//        Button bt_confirm = (Button) findViewById(R.id.bt_confirm);
+    public void onStop(){
+        savedValues();
+        super.onStop();
+    }
+
+    public void onDestroy(){
+        savedValues();
+        super.onDestroy();
+    }
+
+    public void onResume() {
+        super.onResume();
+        if(savedValues.getBoolean("prefer_remember", false)) {
+            goPriceNum = savedValues.getInt("goPriceNum", goPriceNum);
+            paPriceNum = savedValues.getInt("paPriceNum", paPriceNum);
+            gpPriceNum = savedValues.getInt("gpPriceNum", gpPriceNum);
+            mrPriceNum = savedValues.getInt("mrPriceNum", mrPriceNum);
+            tmPriceNum = savedValues.getInt("tmPriceNum", tmPriceNum);
+            onPriceNum = savedValues.getInt("onPriceNum", onPriceNum);
+            pizzaSize = savedValues.getString("pizzaSize", pizzaSize);
+            pizzaPrice = savedValues.getFloat("pizzaPrice", pizzaPrice);
+            rgPizzaSizeId = savedValues.getInt("rgPizzaSizeId", rgPizzaSizeId);
+            setAllValues(false);
+        }
+
+    }
+
+    private void savedValues(){
+        editor = savedValues.edit();
+        if (savedValues.getBoolean("prefer_remember", false)) {
+            editor.putInt("goPriceNum", goPriceNum);
+            editor.putInt("paPriceNum", paPriceNum);
+            editor.putInt("gpPriceNum", gpPriceNum);
+            editor.putInt("mrPriceNum", mrPriceNum);
+            editor.putInt("tmPriceNum", tmPriceNum);
+            editor.putInt("onPriceNum", onPriceNum);
+            editor.putString("pizzaSize", pizzaSize);
+            editor.putFloat("pizzaPrice", pizzaPrice);
+            editor.putInt("rgPizzaSizeId", rgPizzaSizeId);
+        }
+        else{
+            editor.clear();
+            setAllValues(true);
+            editor.putBoolean("prefer_remember", false);
+        }
+
+        //editor.commit();
+        editor.apply();
     }
 
     public void update(){
@@ -126,6 +192,9 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
         btOnIn = findViewById(R.id.bt_on_in);
         btOnIn.setOnClickListener(this);
 
+        btClear = findViewById(R.id.bt_clearAll);
+        btClear.setOnClickListener(this);
+
         // Radio Group
         rgPizzaSize = findViewById(R.id.rg_pizzaSize);
         rgPizzaSize.setOnCheckedChangeListener(this);
@@ -138,10 +207,11 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
             currentOrder.setMOrderTime(this.getCurrentDateTime());
             currentOrder.setMPizzaSize("Pizza size: " + pizzaSize);
             currentOrder.setMToppings(mergeToppings());
-            currentOrder.setMOrderPrice("Total price: " + String.valueOf(totalPrice));
+            currentOrder.setMOrderPrice("Total price: " + totalPrice);
 
             mOrderingHistoryViewModel.insert(currentOrder);
 
+            setAllValues(true);
             Intent intent = new Intent(MenuActivity.this, OrderingHistoryActivity.class);
             startActivity(intent);
         }
@@ -201,12 +271,8 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
     }
 
     public void init(){
-        goPrice = Float.parseFloat(tvGoPrice.getText().toString());
-        paPrice = Float.parseFloat(tvPaPrice.getText().toString());
-        gpPrice = Float.parseFloat(tvGpPrice.getText().toString());
-        mrPrice = Float.parseFloat(tvMrPrice.getText().toString());
-        tmPrice = Float.parseFloat(tvTmPrice.getText().toString());
-        onPrice = Float.parseFloat(tvOnPrice.getText().toString());
+
+
         goPriceNum = 0;
         paPriceNum = 0;
         gpPriceNum = 0;
@@ -216,63 +282,91 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
 
         pizzaPrice = 0;
         totalPrice = 0;
-    }
 
-    public void print() {
-        System.out.println(">>>" + goPriceNum);
-        System.out.println(">>>" + paPriceNum);
-        System.out.println(">>>" + gpPriceNum);
-        System.out.println(">>>" + mrPriceNum);
-        System.out.println(">>>" + tmPriceNum);
-        System.out.println(">>>" + onPriceNum);
-        System.out.println(">>>" + pizzaPrice);
-        System.out.println(">>>" + totalPrice);
+        rgPizzaSizeId = 0;
+
+        pizzaSize = "";
 
 
     }
+
+    public void collectPrices(){
+        goPrice = Float.parseFloat(tvGoPrice.getText().toString());
+        paPrice = Float.parseFloat(tvPaPrice.getText().toString());
+        gpPrice = Float.parseFloat(tvGpPrice.getText().toString());
+        mrPrice = Float.parseFloat(tvMrPrice.getText().toString());
+        tmPrice = Float.parseFloat(tvTmPrice.getText().toString());
+        onPrice = Float.parseFloat(tvOnPrice.getText().toString());
+    }
+
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.bt_go_de:
                 goPriceNum = changePrices(goPriceNum, "-");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_go_in:
                 goPriceNum = changePrices(goPriceNum, "+");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_pa_de:
                 paPriceNum = changePrices(paPriceNum, "-");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_pa_in:
                 paPriceNum = changePrices(paPriceNum, "+");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_gp_de:
                 gpPriceNum = changePrices(gpPriceNum, "-");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_gp_in:
                 gpPriceNum = changePrices(gpPriceNum, "+");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_mr_de:
                 mrPriceNum = changePrices(mrPriceNum, "-");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_mr_in:
                 mrPriceNum = changePrices(mrPriceNum, "+");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_tm_de:
                 tmPriceNum = changePrices(tmPriceNum, "-");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_tm_in:
                 tmPriceNum = changePrices(tmPriceNum, "+");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_on_de:
                 onPriceNum = changePrices(onPriceNum, "-");
+                calculatePrice();
+                setAllValues(false);
                 break;
             case R.id.bt_on_in:
                 onPriceNum = changePrices(onPriceNum, "+");
+                calculatePrice();
+                setAllValues(false);
+                break;
+            case R.id.bt_clearAll:
+                setAllValues(true);
                 break;
         }
-
-        calculatePrice();
 
     }
 
@@ -286,16 +380,26 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
                 onPrice * onPriceNum;
         totalPrice = (float) Math.round(totalPrice * 100) / 100;
 
+    }
+
+    public void setAllValues(Boolean clear){
+        if (clear){
+            rgPizzaSize.clearCheck();
+            isChangedByClear = true;
+            init();
+        }
+        else {
+            if (rgPizzaSizeId != 0) {
+                rgPizzaSize.check(rgPizzaSizeId);
+            }
+        }
         tvGoAmount.setText(String.valueOf(goPriceNum));
         tvPaAmount.setText(String.valueOf(paPriceNum));
         tvGpAmount.setText(String.valueOf(gpPriceNum));
         tvMrAmount.setText(String.valueOf(mrPriceNum));
         tvTmAmount.setText(String.valueOf(tmPriceNum));
         tvOnAmount.setText(String.valueOf(onPriceNum));
-
-
         tvTotalPrice.setText(String.valueOf(totalPrice));
-        print();
     }
 
     public int changePrices(int num, String operation) {
@@ -323,27 +427,52 @@ public class MenuActivity extends AppCompatActivity implements TextView.OnEditor
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch(checkedId){
-            case R.id.rg_smallSize:
-                pizzaSize = "small size";
-                pizzaPrice = 4.99f;
-                break;
-            case R.id.rg_mediumSize:
-                pizzaSize = "medium size";
-                pizzaPrice = 5.99f;
-                break;
-            case R.id.rg_largeSize:
-                pizzaSize = "large size";
-                pizzaPrice = 6.99f;
-                break;
-            case R.id.rg_extraLargeSize:
-                pizzaSize = "extra large size";
-                pizzaPrice = 7.99f;
-                break;
-            default:
-                break;
+        // IMPORTANT:
+        // if isChangedByClear = true, it means the onCheckedChanged is triggered by the clear
+        // button or the change of the settings. So this is not a real "onCheckedChanged" event
+        // and should be ignored. Otherwise, it will cause double triggered problem here.
+        if (isChangedByClear){
+            switch(checkedId){
+                case R.id.rg_smallSize:
+                    rgPizzaSizeId = checkedId;
+                    pizzaSize = "small size";
+                    pizzaPrice = 4.99f;
+                    calculatePrice();
+                    setAllValues(false);
+                    break;
+                case R.id.rg_mediumSize:
+                    rgPizzaSizeId = checkedId;
+                    pizzaSize = "medium size";
+                    pizzaPrice = 5.99f;
+                    calculatePrice();
+                    setAllValues(false);
+                    break;
+                case R.id.rg_largeSize:
+                    rgPizzaSizeId = checkedId;
+                    pizzaSize = "large size";
+                    pizzaPrice = 6.99f;
+                    calculatePrice();
+                    setAllValues(false);
+                    break;
+                case R.id.rg_extraLargeSize:
+                    rgPizzaSizeId = checkedId;
+                    pizzaSize = "extra large size";
+                    pizzaPrice = 7.99f;
+                    calculatePrice();
+                    setAllValues(false);
+                    break;
+                default:
+                    calculatePrice();
+//                setAllValues(true);
+                    break;
+            }
         }
-        calculatePrice();
+        // if isChangedByClear = false, then reset the value.
+        // After that, onCheckedChanged will received the user input.
+        else{
+            isChangedByClear = true;
+        }
+
     }
 
 

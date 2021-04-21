@@ -16,9 +16,12 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_baseline_history_24"
             android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_baseline_account_balance_wallet_24"
-            android:title="@string/menu_slideshow" />
+<!--        <item-->
+<!--            android:id="@+id/nav_slideshow"-->
+<!--            android:icon="@drawable/ic_baseline_account_balance_wallet_24"-->
+<!--            android:title="@string/menu_slideshow" />-->
+<!--        <item-->
+<!--            android:id="@+id/settings"-->
+<!--            android:title="Settings" />-->
     </group>
 </menu>

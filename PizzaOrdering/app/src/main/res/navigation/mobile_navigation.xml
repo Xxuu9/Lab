@@ -25,7 +25,6 @@
 
     <activity
         android:id="@+id/nav_slideshow"
-        android:name="com.example.pizzaordering.MybalanceActivity"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_mybalance" />
 

@@ -29,6 +29,11 @@
             android:parentActivityName=".MainActivity"
             android:name=".OrderingHistoryActivity" >
         </activity>
+        <activity
+            android:theme="@style/Theme.PizzaOrdering"
+            android:parentActivityName=".MainActivity"
+            android:name=".SettingsActivity" >
+        </activity>
     </application>
 
 </manifest>

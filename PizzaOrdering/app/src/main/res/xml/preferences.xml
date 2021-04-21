@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="prefer_remember"
+        android:title="Store values"
+        android:summary="Save the values in the app when you leave"
+        android:defaultValue="true" />
+</PreferenceScreen>
